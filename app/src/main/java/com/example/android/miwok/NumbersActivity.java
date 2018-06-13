@@ -34,11 +34,11 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(new word("nine","wo'e"));
         words.add(new word("ten","na'aacha"));
 
-        ArrayAdapter<word> itemsAdapter = new ArrayAdapter<>(this, R.layout.list_item, words);
+        WordAdapter<word> displayWordAdapter = new WordAdapter<>(this, words);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(displayWordAdapter);
 
         //LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
         //int i = 0;
@@ -48,5 +48,9 @@ public class NumbersActivity extends AppCompatActivity {
         //    rootView.addView(wordView);
         //    i++;
         //}
+
     }
+
 }
+
+
