@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -21,8 +22,6 @@ public class WordAdapter extends ArrayAdapter<word> {
      * The context is used to inflate the layout file, and the list is the data we want
      * to populate into the lists.
      *
-     * @param context        The current context. Used to inflate the layout file.
-     * @param androidFlavors A List of AndroidFlavor objects to display in a list
      */
     public WordAdapter(Activity context, ArrayList<word> words) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
@@ -65,6 +64,17 @@ public class WordAdapter extends ArrayAdapter<word> {
         // set this text on the number TextView
         defaultTextView.setText(currentWord.getDefaultTranslation());
 
+        // Find the ImageView in the list_item.xml layout with the ID list_item_icon
+        ImageView iconView = (ImageView) listItemView.findViewById(R.id.miwok_image);
+        if (currentWord.getImageResourceID() > 0) {
+            // Get the image resource ID from the current AndroidFlavor object and
+            // set the image to iconView
+            iconView.setImageResource(currentWord.getImageResourceID());
+            iconView.setVisibility(View.VISIBLE);
+        } else {
+            // current item dont have a picture with it, hide the image view.
+            iconView.setVisibility(View.GONE);
+        }
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;
