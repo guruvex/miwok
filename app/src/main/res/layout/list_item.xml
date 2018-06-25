@@ -4,30 +4,32 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:padding="16dp">
+    >
 
     <ImageView
         android:id="@+id/miwok_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="@dimen/list_item_height"
+        android:layout_height="@dimen/list_item_height"
+        />
 
     <LinearLayout
+        android:id="@+id/text_container"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/list_item_height"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@color/category_numbers">
 
         <TextView
+            style="@style/list_item_text"
             android:id="@+id/miwok_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/default_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/list_item_text"/>
     </LinearLayout>
 
 </LinearLayout>

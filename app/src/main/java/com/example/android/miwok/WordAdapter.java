@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +18,22 @@ public class WordAdapter extends ArrayAdapter<word> {
 
     private static final String LOG_TAG = WordAdapter.class.getSimpleName();
 
+    // background color variable
+    private int mbackGroundColor;
+
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
      * to populate into the lists.
      *
      */
-    public WordAdapter(Activity context, ArrayList<word> words) {
+    public WordAdapter(Activity context, ArrayList<word> words, int backgroundColor) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, words);
+        mbackGroundColor = backgroundColor;
     }
 
     /**
@@ -75,9 +80,14 @@ public class WordAdapter extends ArrayAdapter<word> {
             // current item dont have a picture with it, hide the image view.
             iconView.setVisibility(View.GONE);
         }
+
+        // find the text view container and add the color to it.
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        textContainer.setBackgroundColor(ContextCompat.getColor(getContext(), mbackGroundColor));
+
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
+
         return listItemView;
     }
-
 }
