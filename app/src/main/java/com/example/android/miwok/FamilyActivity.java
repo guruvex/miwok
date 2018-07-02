@@ -11,6 +11,23 @@ import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
+    // make the MediaPlayer object as a global object
+    private MediaPlayer mMediaPlayer;
+
+    // make the OnCompletionListener a global object
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +54,28 @@ public class FamilyActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+                releaseMediaPlayer();
                 word sound = words.get(position);
 
-                MediaPlayer mediaPlayer = MediaPlayer.create(FamilyActivity.this, sound.getSoundResourceID());
-                mediaPlayer.start();
+                mMediaPlayer = MediaPlayer.create(FamilyActivity.this, sound.getSoundResourceID());
+                mMediaPlayer.start();
+
+                // release the media player after it has finished.
+                mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
             }
         });
+    }
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mMediaPlayer.release();
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mMediaPlayer = null;
+        }
     }
 }
