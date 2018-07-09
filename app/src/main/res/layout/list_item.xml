@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="@color/category_numbers">
+        >
 
         <TextView
             style="@style/list_item_text"
@@ -31,5 +31,14 @@
             android:id="@+id/default_text_view"
             style="@style/list_item_text"/>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/playSoundIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:layout_gravity="center"
+        android:src="@drawable/baseline_play_arrow_white_24"
+        android:paddingRight="16dp"/>
 
 </LinearLayout>

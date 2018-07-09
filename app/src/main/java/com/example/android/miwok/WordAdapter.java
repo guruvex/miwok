@@ -85,9 +85,10 @@ public class WordAdapter extends ArrayAdapter<word> {
         View textContainer = listItemView.findViewById(R.id.text_container);
         textContainer.setBackgroundColor(ContextCompat.getColor(getContext(), mbackGroundColor));
 
+        View playicon = listItemView.findViewById(R.id.playSoundIcon);
+        playicon.setBackgroundColor(ContextCompat.getColor(getContext(), mbackGroundColor));
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
-
         return listItemView;
     }
 }
