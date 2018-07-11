@@ -64,7 +64,6 @@ public class ColorsFragment extends Fragment {
 
         listView.setAdapter(displayWordAdapter);
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
